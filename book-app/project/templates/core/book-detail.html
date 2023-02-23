@@ -1,0 +1,11 @@
+
+
+<h3>Book Detail page</h3>
+<a href="{% url 'books' %}">Go Back</a>
+
+<hr>
+
+
+<p>{{ book.title }}</p>
+<p>{{ book.contributors.get }}</p>
+<p><a href="{{ book.am_link }}">link</a></p>

@@ -1,0 +1,108 @@
+{% extends 'core/main.html' %}
+{% block content %}
+{% load static %}
+
+    
+    <link rel="stylesheet" href="{% static 'core/css/book-list.css' %}">
+    <script src="{% static 'core/js/book-list.js' %}"></script>
+
+    <div class="sidebar-left">
+
+        <table style="width:100%;">
+            <tr>
+                <th></th>
+                <th></th>
+                <th>
+                    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Add Book</button>
+                    <div id="id01" class="modal">
+                        
+                        <form class="modal-content animate" action="" method="POST">
+                            {% csrf_token %}
+
+                            <div class="container">
+                                <label for="utitle" style="color: #9C9EA5"><b>Title</b></label>
+                                <input type="text" style="background-color: #182025; color: #9C9EA5;" placeholder="Enter title" name="utitle" required>
+
+                                <label for="ulink" style="color: #9C9EA5"><b>Amazon Link</b></label>
+                                <input type="text" style="background-color: #182025; color: #9C9EA5;" placeholder="Enter amazon link" name="ulink" required>
+
+                                <label style="color: #9C9EA5"><b>Author</b></label>
+                                <input type="text" style="background-color: #182025; color: #9C9EA5;" placeholder="Enter the author's first name" name="uauthor-f" required>
+                                <input type="text" style="background-color: #182025; color: #9C9EA5;" placeholder="Enter the author's last name" name="uauthor-l" required>
+
+                                <button style="margin-top: 20px; margin-bottom: 10px;" class="submitbtn" type="submit" name="AddBook" value="AddBook">Add Book</button>
+                            </div>
+
+                            <div style="background-color:#182025; padding: 16px; box-shadow: 0px -5px 5px 0px #4A5261;">
+                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </th>
+            </tr>
+            {% for book in books %}
+                <tr>
+                    {% if book.book_started is False %}
+                        <th><a href="{% url 'book-detail' book.id %}">{{ book.title }}</a></th>
+                        <th>{{ book.max_pg_num }} pgs</th>
+                        <th>
+                            <form method="GET" action="">
+                                <input type="hidden" name="hidden-book" value="{{ book.id }}"/>
+                                <input type="submit" value="Add" name="add-to-book-list"></form>
+                            </form>
+                        </th>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="booklist-div" style="width: 100%;">
+        <table class="booklist-table">
+            <tr>
+                <th>Book</th>
+                <th>Pages</th>
+                <th>Rating</th>
+                <th>Review</th>
+                <th>Edit</th>
+                <th>Remove</th>
+            </tr>
+            {% for book in books %}
+                {% if book.book_started is True %}
+                    <tr>
+                        <th><a href="{% url 'book-detail' book.id %}">{{ book.title }}</a></th>
+                        <th>{{ book.max_pg_num }}</th>
+                        <th>
+                            {% if book.review.rating %}
+                                <p>{{ book.review.rating }}</p>
+                            {% else %}
+                                <p>--</p>
+                            {% endif %}
+                        </th>
+                        <th>
+                            {% if book.review %}
+                                <p>{{ book.review.content %}</p>
+                            {% else %}
+                                <a href="">Add Review</a>
+                            {% endif %}
+                        </th>
+                        <th><a href="{% url 'book-edit' book.id %}">Edit</a></th>
+                        <th>
+                            <form method="GET" action=''>
+                                <input type="hidden" name="hidden-book-back" value="{{ book.id }}"/>
+                                <input type="submit" value="back" name="back"/>
+                            </form>
+
+                        </th>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+
+        </table>
+
+
+    </div>
+
+
+{% endblock %}
