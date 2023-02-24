@@ -10,7 +10,7 @@ from .models import Book, BookContributor, Contributor, Review
 # Create your views here.
 def booklist(request):
 
-    # if request.GET == 'add-to-book-list' --> update(book_started=True, date_started=datetime.now())
+    # add book to book list
     if request.GET.get('add-to-book-list') == 'Add':
         # test
         print(request.method)
@@ -19,7 +19,7 @@ def booklist(request):
         # clear url
         return redirect('books')
 
-    # if request.GET == 'back' --> update(book_started=False, date_started=None)
+    # move book back to wishlist
     if request.GET.get('back') == 'back':
         # test
         print(request.method)
@@ -28,7 +28,7 @@ def booklist(request):
         # clear url
         return redirect('books')
 
-    # if request.POST (AddBook form) --> create new book w title, am_link attrs
+    # creates new book obj
     if request.POST.get('AddBook') == 'AddBook':
         # test
         print(request.method)
@@ -37,18 +37,21 @@ def booklist(request):
         query2 = request.POST.get('ulink')
         query3 = request.POST.get('uauthor-f')
         query4 = request.POST.get('uauthor-l')
-
         # make book
         book = Book.objects.create(title=query1, am_link=query2)
-
         # make contributor
         try:
             Contributor.objects.create(first_names=query3, last_names=query4)
         except IntegrityError: 
             contributor = Contributor.objects.get(first_names=query3, last_names=query4)
-        
         # make relationship between book and contributor
         BookContributor.objects.create(book=book, contributor=contributor, role='AUTHOR')
+    ''''
+    # make review
+    if request.POST.get('') == '':
+        # test
+        print(request.method)
+    '''
 
 
     ''' How to order list of models by two attributes? 
