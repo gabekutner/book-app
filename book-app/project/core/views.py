@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect #, render_to_response
 from django.views import generic
 from django.urls import reverse_lazy
 from django.db import IntegrityError
+from django.template import RequestContext
 
 from datetime import datetime
 
@@ -71,3 +72,8 @@ class BookEdit(generic.UpdateView):
     fields = ['title', 'am_link', 'isbn', 'contributors', ]
     template_name = 'core/book-edit.html'
     success_url = reverse_lazy('books')
+
+
+# 404 Not Found
+def handler404(request, *args, **argsv):
+    pass
