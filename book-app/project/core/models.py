@@ -34,7 +34,7 @@ class Book(models.Model):
             
 
             # TypeError / Direct assignment to the forward side of a many-to-many set is prohibited. Use contributors.set() instead.
-            # self.contributors = wb_author(url=self.am_link)
+            #self.contributors = wb_author(url=self.am_link)
 
         return super(Book, self).save(*args, **kwargs)
 

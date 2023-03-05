@@ -8,56 +8,106 @@
 
     <div class="sidebar-left">
 
-        <table style="width:100%;">
-            <tr>
-                <th></th>
-                <th></th>
-                <th>
-                    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Add Book</button>
-                    <div id="id01" class="modal">
-                        
-                        <form class="modal-content animate" action="" method="POST">
-                            {% csrf_token %}
+        <div class="bookform">
 
-                            <div class="container">
-                                <label for="utitle" style="color: #9C9EA5"><b>Title</b></label>
-                                <input type="text" style="background-color: #182025; color: #9C9EA5;" placeholder="Enter title" name="utitle" required>
+            <form method="POST" action="">
+                {% csrf_token %}
 
-                                <label for="ulink" style="color: #9C9EA5"><b>Amazon Link</b></label>
-                                <input type="text" style="background-color: #182025; color: #9C9EA5;" placeholder="Enter amazon link" name="ulink" required>
+                <label class="bookform-label">Add a Book</label>
+                
+                <input class="bookform-input" name="title-book" type="text" placeholder="Title...">
 
-                                <label style="color: #9C9EA5"><b>Author</b></label>
-                                <input type="text" style="background-color: #182025; color: #9C9EA5;" placeholder="Enter the author's first name" name="uauthor-f" required>
-                                <input type="text" style="background-color: #182025; color: #9C9EA5;" placeholder="Enter the author's last name" name="uauthor-l" required>
+                <input class="bookform-input2" name="fauthor-book" type="text" placeholder="First name...">
 
-                                <button style="margin-top: 20px; margin-bottom: 10px;" class="submitbtn" type="submit" name="AddBook" value="AddBook">Add Book</button>
-                            </div>
+                <input class="bookform-input2" name="lauthor-book" type="text" placeholder="Last name...">
 
-                            <div style="background-color:#182025; padding: 16px; box-shadow: 0px -5px 5px 0px #4A5261;">
-                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                            </div>
+                <input class="bookform-input" name="link-book" type="text" placeholder="Link...">
 
-                        </form>
-                    </div>
-                </th>
-            </tr>
-            {% for book in books %}
-                <tr>
+                <center><button class="bookform-button" type="submit" name="AddBook" value="AddBook">Submit</button></center>
+
+            </form>
+
+        </div>
+
+        <div class="wishlist">
+
+            <table class="wishlist-table" style="width:100%;">
+                {% for book in books %}
                     {% if book.book_started is False %}
-                        <th><a href="{% url 'book-detail' book.id %}">{{ book.title }}</a></th>
-                        <th>{{ book.max_pg_num }} pgs</th>
-                        <th>
-                            <form method="GET" action="">
-                                <input type="hidden" name="hidden-book" value="{{ book.id }}"/>
-                                <input type="submit" value="Add" name="add-to-book-list"></form>
-                            </form>
-                        </th>
+
+
+                        <tr>   
+                            <th class="wishlist-th"><a href="{% url 'book-detail' book.id %}">{{ book.title }}</a></th>
+                            <th>
+                                <form method="GET" action="">
+                                    <input type="hidden" name="hidden-book" value="{{ book.id }}"/>
+                                    <input class="addbook-input" type="submit" value="Add" name="add-to-book-list"></form>
+                                </form>
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <td class="wishlist-td">{{ book.contributors.get }}&nbsp;&nbsp;&nbsp;<b>{{ book.max_pg_num }}</b></td>
+                        </tr>                        
+                        
                     {% endif %}
-                </tr>
-            {% endfor %}
-        </table>
+
+                {% endfor %}
+            </table>
+        </div>
+        
+    </div>
+    
+
+    <div class="nav">
+        <label class="nav-label">Collection</label>
+        <form method="GET" action="">
+            <input class="nav-input" name="search" type="text" placeholder="Search...">
+            <button class="nav-submit" name="search-submit" type="submit" value="search-submit">Search</button>
+        </form>
+    </div> 
+
+    <div class="booklist">
+
+        {% for book in books %}
+            {% if book.book_started is True %}
+
+            <div class="booklist-card">
+                <div class="booklist-div1">
+                    <label class="booklist-card-label">{{ book.title }}</label>
+                    <a class="booklist-card-a" href="{% url 'book-detail' book.id %}">View</a>
+                    <a class="booklist-card-a" href="{% url 'book-edit' book.id %}">Edit</a>
+                </div>
+                
+                <div class="booklist-div2">
+                    {% if book.review.rating %}
+                        <h3>{{ book.review.rating }}</h3>
+                    {% else %}
+                        <p>No Rating</p>
+                    {% endif %}
+                </div>
+                
+                <div style="border: 1px solid black; width: auto;">
+                    <form method="GET" action=''>
+                        <input type="hidden" name="hidden-book-back" value="{{ book.id }}"/>
+                        <input class="booklist-card-input" type="submit" value="Remove" name="Remove"/>
+                    </form>
+                </div>
+                
+
+
+            </div>
+
+            {% endif %}
+        {% endfor %}
+
     </div>
 
+
+
+
+
+    <!--
     <div class="booklist-div" style="width: 100%;">
         <table class="booklist-table">
             <tr>
@@ -100,9 +150,7 @@
             {% endfor %}
 
         </table>
-
-
-    </div>
+    </div>-->
 
 
 {% endblock %}

@@ -1,150 +1,274 @@
-/* CSS for AddBook modal */
-
-/* Full-width input fields */
-input[type=text] /*, input[type=password]*/ {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-  
-  /* Set a style for all buttons */
-  button {
-    background-color: #3C7E3F;
-    color: #FFFF;
-    padding: 7px 10px;
-    margin: 2px 0;
-    border: none;
-    cursor: pointer;
-    width: 10%;
-    border-radius: 1px;
-  }
-  
-  .submitbtn {
-    background: #3C7E3F;
-    color: #FFFF;
-    padding: 14px 20px;
-    margin: 2px 0;
-    border: none;
-    cursor: pointer;
-    width: 20%;
-  
-  }
-  
-  button:hover {
-    opacity: 0.8;
-  }
-  
-  /* Extra styles for the cancel button */
-  .cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #C84032;
-  }        
-  
-  .container {
-    padding: 16px;
-  }
-  
-  span.ulink {
-    float: right;
-    padding-top: 16px;
-  }
-  
-  /* The Modal (background) */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 40px;
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #1C2534;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 40%; /* Could be more or less, depending on screen size */
-  }
-  
-  /* The Close Button (x) */
-  .close {
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: #000;
-    font-size: 35px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: #C84032;
-    cursor: pointer;
-  }
-  
-  /* Add Zoom Animation */
-  .animate {
-    -webkit-animation: animatezoom 0.3s;
-    animation: animatezoom 0.3s
-  }
-  
-  @-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)} 
-    to {-webkit-transform: scale(1)}
-  }
-  
-  @keyframes animatezoom {
-    from {transform: scale(0)} 
-    to {transform: scale(1)}
-  }
-  
-  /* Change styles for span and cancel button on extra small screens */
-  @media screen and (max-width: 300px) {
-    span.ulink {
-        display: block;
-        float: none;
-    }
-    .cancelbtn {
-        width: 100%;
-    }
-  }
-
-
 /* CSS for divs */
+
+/* Parent Left sidebars */
 .sidebar-left {
-    width: 300px;
-    position: fixed;
-    z-index: 1; /* Stay on top */
-    top: 10px; /* Stay at the top */
-    left: 10px;
-    background-color: lightgray;
-    overflow-x: hidden; /* Disable horizontal scroll */
+  width: 300px;
 
-    float: left;
+  position: fixed;
+  top: 20px; /* Stay at the top */
+  left: 20px;
+
+
+  z-index: 1; /* Stay on top */
+    
+  overflow-x: hidden; /* Disable horizontal scroll */
+
+  float: left; 
 }
 
-.booklist-div {
-    max-width: 40%;
-    margin-left: 23.5%;
-    height: auto;
-    overflow-x: hidden;
+/* Left Sidebar bookform div */
+.bookform {
 
-    margin-top: 1%;
+  width: 80%;  
+  height: auto;
+  margin-left: 8%;
 
-    float: left;
+  text-align: center;
+
+  background-color: #F9F8F7;
+  padding: 1px 5px 10px 5px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  margin-bottom: 1px;
+
+  border-top: 1px solid #E5E5E5;
+  border-left: 1px solid #E5E5E5;
+  border-right: 1px solid #E5E5E5; /* 465369 */
+
+}
+/* Child classes */
+
+label.bookform-label {
+  color: #4E4D4E;
+
+  display: block;
+  padding: 10px 0px 15px 0px;
+  font-size:x-large;
 }
 
-.booklist-table, th, tr {
-    background-color: lightgray;
-    border: 1px solid black;
+p.bookform-p {
+  color: #8A8F91;
+  font-size: medium;
+  margin-top: -7px;
+}
+
+input[type=text].bookform-input {
+  width: 80%;
+  padding: 10px 18px;
+  margin-top: 5px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background: #ffff;
+  color: #4E4D4E;
+}
+input[type=text].bookform-input:focus {
+  outline: none;
+}
+
+input[type=text].bookform-input2 {
+  width: 40%;
+  padding: 10px 8px;
+  margin-top: 5px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background: #ffff;
+  color: #4E4D4E;
+}
+input[type=text].bookform-input2:focus {
+  outline: none;
+}
+
+button.bookform-button {
+  margin-top: 5px;
+  width: 80%;
+  padding: 7px 10px 7px 10px;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: #2D6232;
+  cursor: pointer;
+  color: #FFFF;
+  font-size:small;
+
+}
+button.bookform-button:hover {
+  background-color: #3C7E3F;
+}
+
+
+.wishlist {
+  top: 247px;
+  bottom: 0;
+  position: fixed;
+
+  width: 293px;
+
+  background-color: #F9F8F7;
+  border: 1px solid #E5E5E5;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+table.wishlist-table {
+  padding: 12px 0px 0px 13px;
+}
+
+th.wishlist-th {
+  text-align: left;
+  font-size: large;
+  padding-bottom: 0px;
+}
+
+td.wishlist-td {
+  text-align: left;
+  font-size: medium;
+  padding-bottom: 20px;
+  padding-top: -10px;
+}
+
+input[type=submit].addbook-input {
+  margin-top: 5px;
+  width: 50px;
+  padding: 7px 0px 7px 0px;
+  border-radius: 3px;
+  background-color: #2D6232;
+  cursor: pointer;
+  color: #FFFF;
+  font-size:small;
+  border: 1px solid black;
+}
+input[type=submit].addbook-input:hover {
+  background-color: #3C7E3F;
+}
+
+.credentials {
+  width: 100%;
+  margin-top: -5px;
+}
+
+
+
+/* Collection CSS */
+
+.nav {
+  width: 507px;
+  height: 55px;
+  background-color: #F9F8F7;
+
+  border-bottom: 1px solid #E5E5E5;
+  border-right: 1px solid #E5E5E5;
+
+  position: absolute;
+  left: 24.5%;
+  top: 21px;
+
+}
+label.nav-label {
+
+  display: inline-block;
+  padding: 15px 0px 0px 5px;
+
+  font-size: xx-large;
+  color: #4E4D4E;
+}
+
+input[type=text].nav-input {
+  position: relative;
+  top: -40px;
+  width: 40%;
+  padding: 10px 18px;
+  margin-left: 45%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background: #ffff;
+  color: #4E4D4E;
+}
+input[type=text].nav-input:focus {
+  outline: none;
+}
+
+button.nav-submit {
+  position: relative;
+  top: -40px;
+  width: 12%;
+  display: inline-block;
+  padding: 10px 7px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background: #2D6232;
+  color: #FFFF;
+  border: 1px solid black;
+  border-radius: 0px;
+}
+button.nav-submit:hover {
+  background-color: #3C7E3F;
+  cursor: pointer;
+}
+
+
+/* Book List + Cards CSS */
+
+.booklist {
+  width: 500px;
+  height: auto;
+  background-color: transparent;
+
+  position: absolute;
+  left: 24.7%;
+  top: 90px;
+}
+
+.booklist-card {
+  
+  background-color: #F9F8F7;
+
+  border: 1px solid #E5E5E5;
+
+  width: 100%;
+  height: 100px;
+
+  margin-bottom: 20px;
+
+}
+
+div.booklist-div1 {
+  width: 80%;
+  display: inline-block;
+  border: 1px solid black;
+}
+div.booklist-div2 {
+  float: right;
+  width: auto;
+  margin-right: 10px;
+  border: 1px solid black;
+
+}
+
+div.booklist-div3 {
+  width: 50px;
+  border: 1px solid black;
+  height: 45%;
+}
+
+label.booklist-card-label {
+  color: #4E4D4E;
+
+  display: inline-block;
+  padding: 10px 0px 15px 10px;
+  font-size: x-large;
+}
+
+input.booklist-card-input {
+  background-color: #C84032;
+  float: right;
+  margin-top: 17px;  
+  border: 1px solid black;
+}
+
+a.booklist-card-a {
+  display: inline-block;
+  margin: 0px 5px 0px 5px;
 }

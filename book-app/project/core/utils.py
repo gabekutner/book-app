@@ -30,7 +30,7 @@ def wb_author(url):
 
 	except AttributeError:
 
-		author_value = None
+		author_value = ""
 
 	return author_value
 
@@ -55,6 +55,6 @@ def wb_pg_num(url):
 				num = num + c
 
 	except AttributeError:
-		pages_value = None
+		num = 0
 
 	return int(num)

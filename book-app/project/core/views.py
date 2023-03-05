@@ -21,7 +21,7 @@ def booklist(request):
         return redirect('books')
 
     # move book back to wishlist
-    if request.GET.get('back') == 'back':
+    if request.GET.get('Remove') == 'Remove':
         # test
         print(request.method)
         query = request.GET.get('hidden-book-back')
@@ -33,26 +33,25 @@ def booklist(request):
     if request.POST.get('AddBook') == 'AddBook':
         # test
         print(request.method)
-        query1 = request.POST.get('utitle')
+        query1 = request.POST.get('title-book')
         # get this auto
-        query2 = request.POST.get('ulink')
-        query3 = request.POST.get('uauthor-f')
-        query4 = request.POST.get('uauthor-l')
+        query2 = request.POST.get('link-book')
+        query3 = request.POST.get('fauthor-book')
+        query4 = request.POST.get('lauthor-book')
+        
         # make book
         book = Book.objects.create(title=query1, am_link=query2)
         # make contributor
         try:
-            Contributor.objects.create(first_names=query3, last_names=query4)
+            contributor = Contributor.objects.create(first_names=query3, last_names=query4)
         except IntegrityError: 
             contributor = Contributor.objects.get(first_names=query3, last_names=query4)
         # make relationship between book and contributor
         BookContributor.objects.create(book=book, contributor=contributor, role='AUTHOR')
-    ''''
-    # make review
-    if request.POST.get('') == '':
-        # test
-        print(request.method)
-    '''
+
+    # search bar
+    
+
 
 
     ''' How to order list of models by two attributes? 
@@ -75,5 +74,9 @@ class BookEdit(generic.UpdateView):
 
 
 # 404 Not Found
-def handler404(request, *args, **argsv):
+def handler404(request, *args, **kwargs):
+    pass
+
+# 500 Server Error
+def handler500(request, *arsg, **kwargs):
     pass
