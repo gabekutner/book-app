@@ -99,7 +99,7 @@ button.bookform-button:hover {
 
 .wishlist {
   top: 247px;
-  bottom: 0;
+  bottom: 40px;
   position: fixed;
 
   width: 293px;
@@ -160,9 +160,13 @@ input[type=submit].addbook-input:hover {
   border-bottom: 1px solid #E5E5E5;
   border-right: 1px solid #E5E5E5;
 
-  position: absolute;
+  position: fixed;
   left: 24.5%;
-  top: 21px;
+  top: 0px;
+  padding-top: 21px;
+
+  overflow: hidden;
+  display: block;
 
 }
 label.nav-label {
@@ -216,9 +220,8 @@ button.nav-submit:hover {
   height: auto;
   background-color: transparent;
 
-  position: absolute;
-  left: 24.7%;
-  top: 90px;
+  margin-left: 24.7%;
+  margin-top: 90px;
 }
 
 .booklist-card {
